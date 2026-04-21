@@ -14,6 +14,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Configure git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
 
       - name: Fetch Bitcoin price
         id: bitcoin
@@ -34,17 +41,10 @@ jobs:
           ${{ steps.date.outputs.yesterday }} - Bitcoin Price: $${{ steps.bitcoin.outputs.price }}+ | Top world news: Check newsapi.org or major news outlets for headline
           EOF
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          commit-message: 'Update daily log - ${{ steps.date.outputs.yesterday }}'
-          title: 'Daily update: News & Bitcoin price - ${{ steps.date.outputs.yesterday }}'
-          body: |
-            Automated daily update for ${{ steps.date.outputs.yesterday }}
-
-            - Bitcoin Price: $${{ steps.bitcoin.outputs.price }}+
-            - News: Check latest headlines from your preferred news source
-
-            This PR was automatically generated at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      - name: Commit and push to main
+        run: |
+          git add daily_log.txt
+          git commit -m "Daily update: ${{ steps.date.outputs.yesterday }} - Bitcoin price and news"
+          git push origin main
           branch: daily-update-${{ github.run_number }}
           delete-branch: false
