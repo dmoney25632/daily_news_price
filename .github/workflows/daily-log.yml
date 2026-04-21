@@ -1,0 +1,50 @@
+name: Daily News & Price Log
+
+on:
+  schedule:
+    - cron: '30 3 * * *'  # 3:30 AM UTC daily
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  update-log:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Bitcoin price
+        id: bitcoin
+        run: |
+          BTC_PRICE=$(curl -s https://api.coindesk.com/v1/bpi/currentprice/USD.json | jq '.bpi.USD.rate_float' | cut -d'.' -f1)
+          echo "price=$BTC_PRICE" >> $GITHUB_OUTPUT
+
+      - name: Get yesterday's date
+        id: date
+        run: |
+          YESTERDAY=$(date -d 'yesterday' '+%B %d, %Y')
+          echo "yesterday=$YESTERDAY" >> $GITHUB_OUTPUT
+
+      - name: Update daily_log.txt
+        run: |
+          cat >> daily_log.txt << 'EOF'
+
+          ${{ steps.date.outputs.yesterday }} - Bitcoin Price: $${{ steps.bitcoin.outputs.price }}+ | Top world news: Check newsapi.org or major news outlets for headline
+          EOF
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: 'Update daily log - ${{ steps.date.outputs.yesterday }}'
+          title: 'Daily update: News & Bitcoin price - ${{ steps.date.outputs.yesterday }}'
+          body: |
+            Automated daily update for ${{ steps.date.outputs.yesterday }}
+
+            - Bitcoin Price: $${{ steps.bitcoin.outputs.price }}+
+            - News: Check latest headlines from your preferred news source
+
+            This PR was automatically generated at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          branch: daily-update-${{ github.run_number }}
+          delete-branch: false
