@@ -35,6 +35,7 @@ jobs:
           EOF
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v5
         with:
           commit-message: 'Update daily log - ${{ steps.date.outputs.yesterday }}'
@@ -48,3 +49,10 @@ jobs:
             This PR was automatically generated at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           branch: daily-update-${{ github.run_number }}
           delete-branch: false
+
+      - name: Enable auto-merge
+        if: steps.cpr.outputs.pull-request-number
+        run: |
+          gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --squash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
