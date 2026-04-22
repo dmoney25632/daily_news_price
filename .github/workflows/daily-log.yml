@@ -27,11 +27,21 @@ jobs:
           YESTERDAY=$(date -d 'yesterday' '+%B %d, %Y')
           echo "yesterday=$YESTERDAY" >> $GITHUB_OUTPUT
 
+      - name: Fetch top world news headline
+        id: news
+        run: |
+          NEWS_RESPONSE=$(curl -s "https://newsapi.org/v2/top-headlines?category=general&sortBy=publishedAt&pageSize=1&apiKey=${{ secrets.NEWS_API_KEY }}")
+          HEADLINE=$(echo "$NEWS_RESPONSE" | jq -r '.articles[0].title // "Unable to fetch headline"')
+          SOURCE=$(echo "$NEWS_RESPONSE" | jq -r '.articles[0].source.name // "Unknown"')
+          echo "headline=$HEADLINE" >> $GITHUB_OUTPUT
+          echo "source=$SOURCE" >> $GITHUB_OUTPUT
+
       - name: Update daily_log.txt
         run: |
           cat >> daily_log.txt << 'EOF'
 
-          ${{ steps.date.outputs.yesterday }} - Bitcoin Price: $${{ steps.bitcoin.outputs.price }}+ | Top world news: Check newsapi.org or major news outlets for headline
+          ${{ steps.date.outputs.yesterday }} - Top world news: ${{ steps.news.outputs.headline }} (Source: ${{ steps.news.outputs.source }})
+          ${{ steps.date.outputs.yesterday }} - Bitcoin Price: $${{ steps.bitcoin.outputs.price }}+ (up from previous day)
           EOF
 
       - name: Create Pull Request
