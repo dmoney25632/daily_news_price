@@ -24,3 +24,5 @@ may 3, 2026 - top world news: Day 65 of Middle East conflict - Trump says US hav
 may 4, 2026 - Bitcoin price: $79,932.7 (up 2.1% from May 3, testing above $80,000 resistance as market shows recovery)
 may 7, 2026 - top world news: Israel bombs Beirut amid ceasefire collapse; US fires on Iranian oil tanker in Gulf of Oman; US Secretary of State Rubio visits Vatican; hantavirus outbreak on Atlantic cruise traced to Argentina
 may 7, 2026 - Bitcoin price: $81,022.55 (holding near $81,000 after reaching highest level since January at $82,000; strong institutional demand continues)
+28	may 9, 2026 - top world news: Day 71 of Middle East conflict - US awaits response from Iran on proposal to end war; Trump says Russia and Ukraine have agreed to his request for a 3-day ceasefire; Russia holds downsized Victory Day parade; Hantavirus outbreak on Atlantic cruise ship (140+ passengers and crew headed to Canary Islands)
+29	may 10, 2026 - Bitcoin price: $80,704.12 (up 0.40% in 24 hours with market cap at $1.62 trillion)
