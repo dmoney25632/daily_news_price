@@ -1,16 +1,14 @@
 name: Daily News & Price Log
-
 on:
   schedule:
     - cron: '30 3 * * *'  # 3:30 AM UTC daily
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   update-log:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
 
     steps:
       - uses: actions/checkout@v4
@@ -39,30 +37,16 @@ jobs:
       - name: Update daily_log.txt
         run: |
           cat >> daily_log.txt << 'EOF'
-
           ${{ steps.date.outputs.yesterday }} - Top world news: ${{ steps.news.outputs.headline }} (Source: ${{ steps.news.outputs.source }})
           ${{ steps.date.outputs.yesterday }} - Bitcoin Price: $${{ steps.bitcoin.outputs.price }}+ (up from previous day)
           EOF
 
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v5
-        with:
-          commit-message: 'Update daily log - ${{ steps.date.outputs.yesterday }}'
-          title: 'Daily update: News & Bitcoin price - ${{ steps.date.outputs.yesterday }}'
-          body: |
-            Automated daily update for ${{ steps.date.outputs.yesterday }}
-
-            - Bitcoin Price: $${{ steps.bitcoin.outputs.price }}+
-            - News: Check latest headlines from your preferred news source
-
-            This PR was automatically generated at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          branch: daily-update-${{ github.run_number }}
-          delete-branch: false
-
-      - name: Enable auto-merge
-        if: steps.cpr.outputs.pull-request-number
+      - name: Commit and push to main
         run: |
-          gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --squash
+          git config user.name "dmoney25632"
+          git config user.email "dayton.runyan@hotmail.com"
+          git add daily_log.txt
+          git commit -m "Daily update: ${{ steps.date.outputs.yesterday }}"
+          git push
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
