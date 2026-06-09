@@ -84,4 +84,6 @@ June 07, 2026 - Bitcoin Price: $+ (up from previous day)
 June 07, 2026 - Top world news: Pope Leo arrives in Madrid for first papal visit to Spain in 15 years; Pope says Iranian war doesn't qualify as "just war"; India launches $9 billion megaport project on Great Nicobar island; Concerns raised over impact on indigenous inhabitants and pristine forests - Sources: NPR World News
 June 08, 2026 - Bitcoin Price: $62,960 (down from June 7, volatile market conditions)
 June 08, 2026 - Top world news: Israel launches strikes on Iran after Tehran fires barrage of missiles - The Washington Post (Source: The Washington Post)
-June 08, 2026 - Bitcoin Price: $+ (up from previous day)
+June 08, 2026 - Bitcoin Price: $63,563.66 (9:30 AM ET, up $1,853.38 from previous day as market recovered from sub-$60,000 dip)
+June 09, 2026 - Top world news: Israel launches strikes against Iran military sites in Isfahan, Kermanshah, Tabriz; Iran claims first response to April attacks; Philippines earthquake kills 35+ in Mindanao with magnitude 7.8; Congo Ebola outbreak spreading at unprecedented pace; Pope Leo XIV calls for "moral renewal" in legislatures
+June 09, 2026 - Bitcoin Price: $63,563.66 (current market cap $1.33 trillion, holding above $60,000 after weekend dip)
