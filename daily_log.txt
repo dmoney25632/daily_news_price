@@ -165,3 +165,5 @@ July 13, 2026 - Top world news: Live updates: US launches second night of strike
 July 13, 2026 - Bitcoin Price: $+ (up from previous day)
 July 14, 2026 - Top world news: Unable to fetch headline (Source: Unknown)
 July 14, 2026 - Bitcoin Price: $+ (up from previous day)
+July 15, 2026 - Top world news: China posts slowest GDP growth since 2022 at 4.3%, missing expectations - CNBC (Source: CNBC)
+July 15, 2026 - Bitcoin Price: $+ (up from previous day)
