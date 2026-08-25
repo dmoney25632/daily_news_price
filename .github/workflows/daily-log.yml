@@ -1,7 +1,7 @@
 name: Daily News & Price Log
 on:
   schedule:
-    - cron: '30 3 * * *'  # 3:30 AM UTC daily
+    - cron: '30 3 * * 1-6'  # 3:30 AM UTC Monday-Saturday (no Sunday runs)
   workflow_dispatch:
 
 jobs:
