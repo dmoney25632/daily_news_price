@@ -305,3 +305,5 @@ September 25, 2026 - Top world news: Netherlands 1-1 Germany (Sep 24, 2026) Game
 September 25, 2026 - Bitcoin Price: $+ (up from previous day)
 September 27, 2026 - Top world news: Unable to fetch headline (Source: Unknown)
 September 27, 2026 - Bitcoin Price: $+ (up from previous day)
+September 28, 2026 - Top world news: SpaceX prepares to send Starship rocket to orbit for first time - CNBC (Source: CNBC)
+September 28, 2026 - Bitcoin Price: $+ (up from previous day)
